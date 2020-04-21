@@ -55,8 +55,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-syntastic/syntastic'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'thaerkh/vim-workspace'
 Plug 'Raimondi/delimitMate'
 
