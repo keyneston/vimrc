@@ -42,6 +42,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-scripts/pyrex.vim'
 Plug 'vim-scripts/python.vim--Vasiliev'
 
+" Javascript
+Plug 'prettier/vim-prettier'
+
 """"""""""""
 " Features "
 """"""""""""
@@ -51,8 +54,6 @@ Plug 'mileszs/ack.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-git'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-syntastic/syntastic'
 Plug 'thaerkh/vim-workspace'
@@ -113,7 +114,6 @@ Plug 'msanders/snipmate.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tsaleh/vim-align'
 Plug 'flazz/vim-colorschemes'
-Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ivanov/vim-ipython'
 Plug 'pangloss/vim-javascript'
@@ -124,6 +124,14 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'hallison/vim-ruby-sinatra'
 Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-surround'
+
+"""""""
+" Git "
+"""""""
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'airblade/vim-gitgutter'
+Plug 'knsh14/vim-github-link'
 
 call plug#end()
 
