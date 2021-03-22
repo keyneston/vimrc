@@ -20,7 +20,7 @@ let g:ctrlp_mruf_relative = 1
 " Disable ctrlp_mru
 let g:ctrlp_mruf_exclude = '.*'
 " Use the cwd or the nearest .(git|hg|svn) folder as the root
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = 'w'
 " Override default keybindings to be closer to standard vim.
 " i.e. ctrp+p, ctrl+n navigate the list instead of search terms
 let g:ctrlp_prompt_mappings = {
@@ -28,6 +28,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("j")':   ['<c-n>', '<up>'],
     \ 'PrtHistory(-1)':       ['<c-j>'],
     \ 'PrtHistory(1)':        ['<c-k>'],
+    \ 'PrtClearCache()':      ['<c-r>'],
     \ }
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
@@ -40,5 +41,5 @@ let g:ctrlp_user_command = {
     \ 'fallback': '[ "$PWD" = "$HOME" ] && echo "In HOME Directory" || rg %s --files --color=never --glob ""'
     \ }
 
-" Disable cacheing
-let g:ctrlp_use_caching = 0
+" Control Caching
+let g:ctrlp_use_caching = 2000
