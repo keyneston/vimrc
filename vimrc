@@ -19,10 +19,8 @@ call plug#begin('~/.cache/vim-plugins/')
 """""""""""""
 " Languages "
 """""""""""""
-Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'vim-scripts/JSON.vim'
 Plug 'juvenn/mustache.vim'
-Plug 'racer-rust/vim-racer'
 Plug 'tpope/vim-repeat'
 Plug 'jparise/vim-graphql'
 Plug 'rodjek/vim-puppet'
@@ -37,10 +35,15 @@ Plug 'plasticboy/vim-markdown'
 
 " Rust
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 " Python
 Plug 'vim-scripts/pyrex.vim'
 Plug 'vim-scripts/python.vim--Vasiliev'
+
+" Go
+Plug 'sebdah/vim-delve'
+Plug 'fatih/vim-go', { 'tag': '*' }
 
 " Javascript
 Plug 'prettier/vim-prettier'
@@ -54,6 +57,7 @@ Plug 'mileszs/ack.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go'
+"Plug 'deoplete-plugins/deoplete-lsp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-syntastic/syntastic'
 Plug 'thaerkh/vim-workspace'
@@ -63,9 +67,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 
-" CtrlP
+" CtrlP / FZF
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
 
 " Ctags
 Plug 'ludovicchabant/vim-gutentags'
@@ -79,6 +85,7 @@ Plug 'sirver/UltiSnips'
 " Themes "
 """"""""""
 Plug 'michalbachowski/vim-wombat256mod'
+Plug 'sheerun/vim-wombat-scheme'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-vividchalk'
 
@@ -103,8 +110,7 @@ Plug 'roxma/nvim-yarp' " Required for deoplete
 " Plug 'elixir-lang/vim-elixir'
 " Plug 'vim-scripts/minibufexplorerpp'
 " Plug 'lyokha/vim-xkbswitch'
-" Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+
 
 " Need to investigate
 Plug 'slashmili/alchemist.vim'
@@ -139,25 +145,12 @@ call plug#end()
 " Pre-Init "
 """"""""""""
 
-
 function! Tabs_create_dir(loc) 
   let s:eloc = expand(a:loc)
   if !isdirectory(s:eloc)
     call mkdir(s:eloc, 'p')
   endif
 endfunction
-
-
-"" Load the Pathogen package manager.
-"" There is a bug that causes vim to return 1 instead of 0 if filetype is not
-"" on when you attempt to turn it off. It must be off for pathogen to work
-"" correctly. So turn it on then turn it off there by ensuring it is off and
-"" that vim returns proper status codes.
-"filetype on
-"filetype off
-"
-"call pathogen#infect('bundle/{}')
-"call pathogen#helptags()
 
 " "" Highlight Extra Whitespace   
 " highlight ExtraWhitespace ctermbg=red guibg=red
@@ -237,7 +230,7 @@ augroup langsettings
   autocm FileType gitcommit call deoplete#custom#buffer_option('auto_complete', v:false)
   autocm FileType javascript.jsx setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
   autocm FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
-
+  autocm FileType template setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
   "" Python
   """ smartindent forces all comments to be left aligned. cindent adds auto 
@@ -263,7 +256,6 @@ let g:vimwiki_list=[{'path': "~/Dropbox/vimwiki", 'syntax': 'markdown', 'ext': '
 command! ClosePreview if pumvisible() == 0|pclose|endif
 nnoremap <leader>c :ClosePreview<cr>
 
-
 com! Sudo %!sudo tee % >> /dev/null
 
 " Taken from http://stackoverflow.com/questions/2974192/how-can-i-pare-down-vims-buffer-list-to-only-include-active-buffers
@@ -288,16 +280,16 @@ function! CloseHiddenBuffers()
 endfun
 
 "nnoremap = :call ResizeWindows()<cr>
-com! ResizeWindows call ResizeWindows()
-function! ResizeWindows()
-  bufdo 
-  "let b:cur_win=winnr()
-  "normal 1
-  "set winfixheight
-  "normal =
-  "set nowinfixheight
-  "normal b:cur_win
-endfun
+" com! ResizeWindows call ResizeWindows()
+" function! ResizeWindows()
+"   "bufdo 
+"   "let b:cur_win=winnr()
+"   "normal 1
+"   "set winfixheight
+"   "normal =
+"   "set nowinfixheight
+"   "normal b:cur_win
+" endfun
  
 """"""""""""""""""
 " Custom Keymaps "

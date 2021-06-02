@@ -6,3 +6,5 @@ if has("gui_running")
 else
   let g:gitgutter_enabled = 0
 endif
+
+command! Gadd :!git add %

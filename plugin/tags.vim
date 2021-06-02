@@ -37,9 +37,13 @@
 "\ }
 
 " Gutentags
-let g:gutentags_modules = ['ctags']
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_ctags_executable_go = 'gotags'
+
+let output=system('which ctags-exuberant')
+if !v:shell_error
+  let g:gutentags_modules = ['ctags']
+  let g:gutentags_cache_dir = expand('~/.cache/tags')
+  let g:gutentags_ctags_executable_go = 'gotags'
+endif
 
 " From https://github.com/fatih/vim-go/issues/934
 "let g:gutentags_project_info = []

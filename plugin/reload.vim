@@ -20,7 +20,9 @@ function! s:reload_all()
   endfor
 
   so $MYVIMRC
-  so $MYGVIMRC
+  if !has('nvim')
+    so $MYGVIMRC
+  endif
 endfunction
 
 command! ReloadAll call s:reload_all()

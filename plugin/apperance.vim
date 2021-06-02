@@ -1,27 +1,26 @@
 syntax enable
 
-if has("gui_running")
-  "colorscheme jellybeans
-  "colorscheme codeschool
-
+if has("gui_running") || has('gui_vimr')
   try
     colorscheme wombat256mod
-    autocmd ColorScheme * highlight! link SignColumn Normal 
-    autocmd ColorScheme * highlight! link NonText Normal
+    colorscheme wombat256mod
+
+    augroup fixcolours
+      au!
+
+      autocmd ColorScheme * highlight! link SignColumn Background
+      autocmd ColorScheme * highlight! link NonText Background
+    augroup END
+
+" " something strange is going on and the colorscheme isn't being correctly
+" " set. Setting it a second time seems to fix this issue.
+try
+  colorscheme wombat256mod
+endtry
+
   catch
     echo "Error loading wombat256mod"
   endtry
-  " something strange is going on and the colorscheme isn't being correctly
-  " set. Setting it a second time seems to fix this issue.
-  try
-    colorscheme wombat256mod
-  endtry
-
-  set guifont=Andale\ Mono:h12
-  set noantialias
-
-  set nocursorline
-  set go=c "not sure what this line is?
 else
   " Do terminal only stuff here.
   set background=light
