@@ -9,10 +9,11 @@
 let mapleader = ","
 let maplocalleader = "\\"
 
-"""""""""""
-" Plugins "
-"""""""""""
-
+"""""""""""""""
+"             "
+"   Plugins   "
+"             "
+"""""""""""""""
 
 call plug#begin('~/.cache/vim-plugins/')
 
@@ -106,11 +107,9 @@ Plug 'roxma/nvim-yarp' " Required for deoplete
 " Plug 'vim-scripts/groovy.vim'
 " Plug 'jneen/ragel.vim'
 " Plug 'mxw/vim-jsx'
-" Plug 'vim-scripts/vimwiki'
 " Plug 'elixir-lang/vim-elixir'
 " Plug 'vim-scripts/minibufexplorerpp'
 " Plug 'lyokha/vim-xkbswitch'
-
 
 " Need to investigate
 Plug 'slashmili/alchemist.vim'
@@ -138,6 +137,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'airblade/vim-gitgutter'
 Plug 'knsh14/vim-github-link'
+
+""""""""""""
+" Vim Wiki "
+""""""""""""
+"Plug 'vim-scripts/vimwiki'
+Plug 'lervag/wiki.vim'
+Plug 'lervag/wiki-ft.vim'
 
 call plug#end()
 
@@ -215,8 +221,8 @@ augroup langsettings
   autocm FileType json setlocal shiftwidth=2 softtabstop=2 expandtab
   autocm FileType ruby setlocal shiftwidth=2 softtabstop=2 expandtab
   autocm Filetype haskell compiler ghc
-  autocm Filetype markdown setlocal spell textwidth=78
-  autocm Filetype *.txt setlocal spell nonu textwidth=0
+  autocm Filetype markdown,wiki setlocal spell textwidth=78 conceallevel=0 shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  autocm Filetype txt setlocal spell nonu textwidth=0
   autocm Filetype yacc setlocal syntax=yacc
   autocm FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocm FileType sh setlocal shiftwidth=2 softtabstop=2 expandtab
@@ -240,13 +246,7 @@ augroup langsettings
   autocm FileType python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
 augroup END
 
-""""""""""""""""""""""
-"      Vim Wiki      "
-""""""""""""""""""""""
-
-let g:vimwiki_list=[{'path': "~/Dropbox/vimwiki", 'syntax': 'markdown', 'ext': '.md'}]
-
-""""""""""""""""""""""
+"""""""""""""""""""""
 " Functions and Code "
 """"""""""""""""""""""
 

@@ -41,6 +41,7 @@ set wildmode=longest,list,full
 set wildmenu
 
 set spell
+set spelllang=en_gb,en_us,nl
 set nojoinspaces
 set visualbell
 set tabstop=4
