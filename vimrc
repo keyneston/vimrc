@@ -32,7 +32,7 @@ Plug 'juliosueiras/vim-terraform-completion'
 
 " Markdown
 Plug 'godlygeek/tabular' "Required for vim-markdown
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -49,6 +49,10 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 " Javascript
 Plug 'prettier/vim-prettier'
 
+" Scala
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+
 """"""""""""
 " Features "
 """"""""""""
@@ -63,6 +67,10 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-syntastic/syntastic'
 Plug 'thaerkh/vim-workspace'
 Plug 'Raimondi/delimitMate'
+Plug 'vim-test/vim-test'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+"Plug 'dhruvasagar/vim-zoom'
 
 " Lightline
 Plug 'itchyny/lightline.vim'
@@ -81,6 +89,9 @@ Plug 'skywind3000/gutentags_plus'
 " Snippets
 Plug 'sirver/UltiSnips'
 "Plug 'honza/vim-snippets'
+
+" Linters / Vale
+Plug 'dense-analysis/ale' " Configures auto running of Linters
 
 """"""""""
 " Themes "
@@ -118,17 +129,22 @@ Plug 'vim-scripts/scratch.vim'
 Plug 'msanders/snipmate.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tsaleh/vim-align'
-Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ivanov/vim-ipython'
 Plug 'pangloss/vim-javascript'
-"Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown'
 Plug 'uarun/vim-protobuf'
 Plug 'airblade/vim-rooter'
 Plug 'vim-ruby/vim-ruby'
 Plug 'hallison/vim-ruby-sinatra'
 Plug 'jpalardy/vim-slime'
-Plug 'tpope/vim-surround'
+
+"""""""""""
+" Colours "
+"""""""""""
+Plug 'flazz/vim-colorschemes'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/sonokai'
 
 """""""
 " Git "
@@ -210,6 +226,8 @@ augroup langsettings
   autocm BufEnter *.html set filetype=html
   autocm BufEnter *.yml,*.yaml set filetype=yaml
   autocm BufEnter *.tf set filetype=terraform
+  autocm BufEnter *.sbt,*.sc,*.scala set filetype=scala
+  autocm BufEnter *.css set filetype=css
 
   " Style
   autocm BufEnter *.ml set shiftwidth=2 expandtab softtabstop=2
@@ -221,7 +239,7 @@ augroup langsettings
   autocm FileType json setlocal shiftwidth=2 softtabstop=2 expandtab
   autocm FileType ruby setlocal shiftwidth=2 softtabstop=2 expandtab
   autocm Filetype haskell compiler ghc
-  autocm Filetype markdown,wiki setlocal spell textwidth=78 conceallevel=0 shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  autocm Filetype markdown,wiki setlocal spell textwidth=80 conceallevel=0 shiftwidth=2 tabstop=2 softtabstop=2 expandtab wrap
   autocm Filetype txt setlocal spell nonu textwidth=0
   autocm Filetype yacc setlocal syntax=yacc
   autocm FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -233,10 +251,12 @@ augroup langsettings
   autocm FileType yaml setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 foldmethod=indent
   autocm FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocm FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  autocm FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocm FileType gitcommit call deoplete#custom#buffer_option('auto_complete', v:false)
   autocm FileType javascript.jsx setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
   autocm FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
   autocm FileType template setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+  autocm FileType scala call deoplete#custom#buffer_option('auto_complete', v:false)
 
   "" Python
   """ smartindent forces all comments to be left aligned. cindent adds auto 
@@ -309,3 +329,4 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F5> :set invpaste paste?<Enter>
 inoremap <F5> <C-O><F5>
 set pastetoggle=<F5>
+nnoremap <leader>q gq{gq}

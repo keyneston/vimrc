@@ -1,7 +1,6 @@
 """""""""""""""""""""""""""""
 " Global Variables/Settings "
 """""""""""""""""""""""""""""
-
 set completeopt=menu,noselect
 
 "let python_highlight_all = 1
@@ -59,7 +58,6 @@ set ruler
 set hidden
 set splitbelow
 let g:miniBufExplSplitBelow=0
-set foldmethod=syntax
 set showtabline=2
 
 " make the directories needed:

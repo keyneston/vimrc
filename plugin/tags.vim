@@ -37,6 +37,11 @@
 "\ }
 
 " Gutentags
+"
+augroup tagbar
+  au!
+  autocmd VimEnter * nested :call tagbar#autoopen(1)
+augroup END
 
 let output=system('which ctags-exuberant')
 if !v:shell_error

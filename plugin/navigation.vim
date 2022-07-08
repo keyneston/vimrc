@@ -20,7 +20,7 @@ let g:ctrlp_mruf_relative = 1
 " Disable ctrlp_mru
 let g:ctrlp_mruf_exclude = '.*'
 " Use the cwd or the nearest .(git|hg|svn) folder as the root
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = 'rc'
 " Override default keybindings to be closer to standard vim.
 " i.e. ctrp+p, ctrl+n navigate the list instead of search terms
 let g:ctrlp_prompt_mappings = {
@@ -35,18 +35,18 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " Use git's ls-files if in a .git dir otherwise use rg. In addition use grep
 " to ignore any directories or files starting with a '_'
 "
-" let g:ctrlp_user_command = {
-"   \ 'types': {
-"     \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard | grep -E -v "(^|/)_"'],
-"     \ },
-"     \ 'fallback': '[ "$PWD" = "$HOME" ] && echo "In HOME Directory" || rg %s --files --color=never --glob ""'
-"     \ }
 let g:ctrlp_user_command = {
-  \   'types': {
-  \     1: ['.git', 'cd %s && fscache read -r']
-  \   },
-  \   'fallback': 'cd %s && fscache read -r'
-  \ }
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard | grep -E -v "(^|/)_"'],
+    \ },
+    \ 'fallback': '[ "$PWD" = "$HOME" ] && echo "In HOME Directory" || rg %s --files --color=never --glob ""'
+    \ }
+" let g:ctrlp_user_command = {
+"   \   'types': {
+"   \     1: ['.git', 'cd %s && fscache read -r']
+"   \   },
+"   \   'fallback': 'cd %s && fscache read -r'
+"   \ }
 
 " Control Caching
 let g:ctrlp_use_caching = 0
@@ -62,12 +62,14 @@ let g:ctrlp_user_command_async=1
 "   FZF   "
 """""""""""
 
-let $FZF_DEFAULT_COMMAND='fscache read -r -f'
+"let $FZF_DEFAULT_COMMAND='fscache read -r -f'
+let $FZF_DEFAULT_COMMAND='git ls-files "`git root`" -co --exclude-standard | grep -E -v "(^|/)_"'
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <leader>p :FzfFiles<CR>
 nnoremap <leader>t :FzfTags<CR>
 nnoremap <leader>b :FzfBuffer<CR>
 nnoremap <leader>r :FzfRg<CR>
+nnoremap <leader>w :WikiFzfPages<CR>
 
 let g:fzf_colors =
             \ { 'fg':      ['fg', 'Normal'],
@@ -85,3 +87,5 @@ let g:fzf_colors =
             \ 'header':  ['fg', 'Comment'] }
 
 command! -bang -nargs=* FzfRg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+let $FZF_DEFAULT_OPTS='--filepath-word'

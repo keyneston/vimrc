@@ -11,8 +11,14 @@ set nocursorline
 set go=c "not sure what this line is?
 
 function! ResetFont()
-  set guifont=Andale\ Mono:h12
-  set noantialias
+  set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h11
+  " set guifont=Andale\ Mono:h12
+
+  if &guifont == "JetBrainsMono\ Nerd\ Font\ Mono:h11"
+    set antialias
+  else
+    set noantialias
+  endif
 endfunction
 
 call ResetFont()

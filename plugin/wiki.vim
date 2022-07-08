@@ -25,37 +25,13 @@ function! WikiRoot()
 endfunction
 
 let g:wiki_root = 'WikiRoot'
+let g:wiki_export = {
+    \ 'args' : '',
+    \ 'from_format' : 'markdown',
+    \ 'ext' : 'html',
+    \ 'link_ext_replace': v:false,
+    \ 'view' : v:false,
+    \ 'output': fnamemodify(expand('%'), ':s?wiki?\.\./output?:.:h'),
+    \}
 
-" let g:vimwiki_list = [
-"       \ {'name': 'main', 'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'},
-"       \ {
-"         \ 'auto_export': 1,
-"         \ 'automatic_nested_syntaxes':1,
-"         \ 'path_html': './hugo/content/',
-"         \ 'template_path': '$HOME/Code/src/github.com/keyneston/rpg-wiki/templates/',
-"         \ 'template_default':'markdown',
-"         \ 'template_ext':'.html',
-"         \ 'name': 'rpg-wiki',
-"         \ 'path': '$HOME/Code/src/github.com/keyneston/rpg-wiki/wiki/', 
-"         \ 'syntax': 'markdown',
-"         \ 'ext': '.md', 
-"         \ 'diary_rel_path': 'posts', 
-"         \ 'diary_index': '_index',
-"         \ 'diary_header': 'Posts',
-"         \ 'custom_wiki2html': '/Users/tabitha/Code/src/github.com/keyneston/rpg-wiki/script/wiki2html.sh'
-"         \ },
-"       \ ]
-"         " "\ 'custom_wiki2html': '$HOME/Code/src/github.com/keyneston/rpg-wiki/scripts/wiki2html.sh',
-"         " 'custom_wiki2html': 'CONTENT_ROOT=~/Code/src/github.com/keyneston/rpg-wiki/wiki/ ~/Code/src/github.com/keyneston/rpg-wiki/scripts/wiki2html.sh',
-" 
-" nnoremap <silent> <Leader>wb :VimwikiGoBackLink<CR>
-" let g:vimwiki_conceallevel=0
-
-" let g:wiki_export = {
-"     \ 'args' : '',
-"     \ 'from_format' : 'markdown',
-"     \ 'ext' : 'pdf',
-"     \ 'link_ext_replace': v:false,
-"     \ 'view' : v:false,
-"     \ 'output': fnamemodify(tempname(), ':h'),
-"     \}
+let g:wiki_link_extension=".md"
